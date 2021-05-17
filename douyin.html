@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        * {padding: 0; margin: 0;} /*养成习惯*/
+        html, body, video {
+            width: 100%;
+            height: 100%;
+        }
+
+
+        video {
+            object-fit: cover;
+
+        }
+
+        .header {
+            position: fixed; /*相对于浏览器定位*/
+            top: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden; /*清除浮动、溢出裁切*/
+        }
+
+        .nav {
+            line-height: 80px; /* 字行高 */
+            padding: 0 10px;
+            color: white;
+            float: right;
+        }
+
+
+    </style>
+
+
+    <script>
+        //原生js
+        function player(_this) {
+            var video = document.getElementsByTagName('video')[0];
+            if(_this.getAttribute('src') === "img/player.png") {
+                video.muted = true;
+                _this.setAttribute('src', 'img/player_close.png') ;
+            } else {
+                video.muted = false;
+                _this.setAttribute('src', 'img/player.png') ;
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <video loop autoplay muted src="mp4/video.mp4"></video>
+
+    <div class="header">
+        <img class="nav" onclick="player(this)"
+             style="margin: 28px 50px 0 0"
+             src="img/player_close.png"/>
+        <div class="nav" >企业认证</div>
+        <div class="nav">机构认证</div>
+        <div class="nav">抖音音乐人</div>
+    </div>
+
+
+</body>
+</html>
