@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--固定写法，用来适配移动端和PC端浏览器大小-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>母亲节场景页</title>
+
+    <link rel="stylesheet" href="swiper/swiper-3.4.2.min.css"/>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="swiper/swiper-3.4.2.min.js"></script>
+
+    <style>
+        *{margin:0; padding: 0;}
+
+        html{
+            width: 100%;
+            height: 100%;
+            text-align: center;/*行级标签水平居中*/
+        }
+
+        body{
+            display: inline-block;/*行级块标签*/
+            height: 100%;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .swiper-container, .swiper-wrapper, .swiper-slide{
+            width: 100%;
+            height: 100%;
+        }
+
+        /*微信页面 page的共同类*/
+        .wxpage{
+            background-repeat: no-repeat;
+            background-size: cover;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+
+/*音乐按钮*/
+        .music-btn{
+            position: absolute;
+            top: 5%;
+            right: 5%;
+            width: 10%;
+            opacity: 0.6;
+            z-index: 100;
+
+        }
+
+        @keyframes music {
+            from{transform: rotate(0)}
+            to{transform: rotate(360deg)}
+        }
+
+        .music-btn-anim{animation: music 2s linear infinite;}
+
+/*以下为page1*/
+        .page1{
+            height: 100%;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page1 img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            right: 100%;
+            top: 0;
+            opacity: 1;
+            animation: one 3s linear forwards;
+        }
+
+        /*page1的轮播图片*/
+        .page1 img:nth-child(2){animation-delay: 2s;}
+        .page1 img:nth-child(3){animation-delay: 4s;}
+        .page1 img:nth-child(4){animation-delay: 6s;}
+        .page1 img:nth-child(5){animation-delay: 8s;}
+        .page1 img:nth-child(6){animation-delay: 10s;}
+        .page1 img:nth-child(7){animation: two 3s linear forwards; animation-delay: 12s;} /*先动画后延迟*/
+
+        /*one用于page1前六张*/
+        @keyframes one {
+             0%{right: 100%; opacity: 1;}
+            33%{right: 0; opacity: 1;}
+            66%{right: 0; opacity: 1;}
+            100%{right: 0; opacity: 0;}
+        }
+        /*two用于page1最后一张*/
+        @keyframes two {
+            0%{right: 100%; opacity: 1;}
+            33%{right: 0; opacity: 1;}
+            66%{right: 0; opacity: 1;}
+            100%{right: 0; opacity: 1;}
+        }
+
+/*以下为page2*/
+        .page2{position: relative;}
+
+        /*所有图片*/
+        .page2 img{position: absolute;}/*定位才能实现分层*/
+
+        /*背景图*/
+        .page2 .bg{
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: scale(0);
+        }
+
+        @keyframes bg {
+            from {transform: scale(0)}
+            to {transform: scale(1)}
+        }
+
+        .bg-anim{animation: bg 1s linear forwards;}
+
+        /*线框*/
+        .page2 .line{
+            width: 96%;
+            height: 96%;
+            left: 2%;
+            top: 2%;
+        }
+
+        @keyframes rotateLine {
+            from {transform: rotate(0)}
+            to {transform: rotate(360deg)}
+        }
+
+        .line-anim{animation: rotateLine 1s linear forwards;}
+
+        /*鸟*/
+        .page2 .bird{
+            width: 30%;
+            top: 0;
+            right: -100%;/*容器右边框向右*/
+        }
+
+        @keyframes bird {
+            from {right:-100%}
+            to {right: 0}
+        }
+
+        .bird-anim{
+            animation: bird 1s linear forwards;
+            animation-delay: 1s;
+        }
+
+        /*我想对你说*/
+        .page2 .i     {width: 15%; top:  5%; left:  30%; transform: scale(0)}
+        .page2 .think {width: 17%; top:  9%; right: 40%; transform: scale(0)}
+        .page2 .yes   {width: 14%; top: 18%; left:  31%; transform: scale(0)}
+        .page2 .you   {width: 13%; top: 22%; right: 41%; transform: scale(0)}
+        .page2 .say   {width: 20%; top: 30%; left:  36%; transform: scale(0)}
+
+        @keyframes ityys {
+            from {transform: scale(0)}
+            to {transform: scale(1)}
+        }
+
+        .i-anim     {animation: ityys 1s linear forwards; animation-delay: 2s;}
+        .think-anim {animation: ityys 1s linear forwards; animation-delay: 2.5s;}
+        .yes-anim   {animation: ityys 1s linear forwards; animation-delay: 3s;}
+        .you-anim   {animation: ityys 1s linear forwards; animation-delay: 3.5s;}
+        .say-anim   {animation: ityys 1s linear forwards; animation-delay: 4.5s;}
+
+    </style>
+
+    <script>
+        //jquery的main函数
+        $(function (){
+            //音乐按钮
+            $('#music-btn').click(function (){
+                if($('audio').get(0).paused === true){
+                    $(this).addClass('music-btn-anim');
+                    $('audio').get(0).play();
+                }  else {
+                    $(this).removeClass('music-btn-anim');
+                    $('audio').get(0).pause();
+                }
+            });
+
+            // 滑页，page的主要js
+            new Swiper('.swiper-container', {
+                direction: "vertical",
+                onSlideChangeStart: function (swiper) {
+                    // 第二页
+                    if (swiper.activeIndex === 1) {
+                        $('.page2 .bg').addClass('bg-anim');
+                        $('.page2 .line').addClass('line-anim');
+                        $('.page2 .bird').addClass('bird-anim');
+                        $('.page2 .i').addClass('i-anim');
+                        $('.page2 .think').addClass('think-anim');
+                        $('.page2 .yes').addClass('yes-anim');
+                        $('.page2 .you').addClass('you-anim');
+                        $('.page2 .say').addClass('say-anim');
+                    } else {
+                        $('.page2 .bg').removeClass('bg-anim');
+                        $('.page2 .line').removeClass('line-anim');
+                        $('.page2 .bird').removeClass('bird-anim');
+                        $('.page2 .i').removeClass('i-anim');
+                        $('.page2 .think').removeClass('think-anim');
+                        $('.page2 .yes').removeClass('yes-anim');
+                        $('.page2 .you').removeClass('you-anim');
+                        $('.page2 .say').removeClass('say-anim');
+                    }
+                }
+            });
+        })
+    </script>
+</head>
+<body>
+    <!--音乐背景-->
+    <audio src="mp3/mother.mp3" loop ></audio>
+    <img id="music-btn" class="music-btn" src="img/musicBtn.png" />
+
+    <!-- Slider main container -->
+    <div class="swiper-container">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+        <!-- Slides -->
+            <!--page1-->
+            <div class="swiper-slide">
+                <div class="page1 wxpage"
+                    style="background-image: url(img/indexBg.png)">
+                    <img src="img/indexOne.png" />
+                    <img src="img/indexTwo.png" />
+                    <img src="img/indexThree.png" />
+                    <img src="img/indexFour.png" />
+                    <img src="img/indexFive.png" />
+                    <img src="img/indexSix.png" />
+                    <img src="img/indexSeven.png" />
+                </div>
+            </div>
+
+            <!--page2-->
+            <div class="swiper-slide">
+                <div class="page2 wxpage"
+                     style="background-color: white">
+                    <img class="bg" src="img/twoBg.png">
+                    <img class="line" src="img/thickLine.png">
+                    <img class="bird" src="img/bird.png">
+                    <img class="i" src="img/i.png">
+                    <img class="think" src="img/think.png">
+                    <img class="yes" src="img/yes.png">
+                    <img class="you" src="img/you.png">
+                    <img class="say" src="img/say.png">
+
+                </div>
+            </div>
+
+<!--            TODO: page3-->
+            <!--page3-->
+            <div class="swiper-slide">
+                <div class="page3 wxpage"
+                     style="background-color: white">
+                    <img class="bg" src="img/twoBg.png">
+                </div>
+            </div>
+    </div>
+    </div>
+
+</body>
+</html>

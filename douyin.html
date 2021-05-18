@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
+    <script src="js/jquery-1.11.1.min.js"></script>
     <style>
         * {padding: 0; margin: 0;} /*养成习惯*/
         html, body, video {
@@ -32,6 +32,19 @@
             float: right;
         }
 
+        .center{
+            position: fixed;
+            top: 40%;
+            right: 50px;
+            text-align: center;/*把行级标签挪到最右边*/
+            /*overflow: hidden;  清除子节点浮动 */
+        }
+        .slogan{
+            width: 400px;
+        }
+        .android, .appstore{
+            width: 150px;
+        }
 
     </style>
 
@@ -39,15 +52,14 @@
     <script>
         //原生js
         function player(_this) {
-            var video = document.getElementsByTagName('video')[0];
-            if(_this.getAttribute('src') === "img/player.png") {
-                video.muted = true;
-                _this.setAttribute('src', 'img/player_close.png') ;
+            var $video = $('video');
+            if ($(_this).attr('src') === 'img/player_close.png') {
+                $video.get(0).muted = false;
+                $(_this).attr('src', 'img/player.png');
             } else {
-                video.muted = false;
-                _this.setAttribute('src', 'img/player.png') ;
+                $video.get(0).muted = true;
+                $(_this).attr('src', 'img/player_close.png');
             }
-
         }
     </script>
 </head>
@@ -55,6 +67,7 @@
     <video loop autoplay muted src="mp4/video.mp4"></video>
 
     <div class="header">
+        <!-- this对象为当前标签对象img -->
         <img class="nav" onclick="player(this)"
              style="margin: 28px 50px 0 0"
              src="img/player_close.png"/>
@@ -62,7 +75,14 @@
         <div class="nav">机构认证</div>
         <div class="nav">抖音音乐人</div>
     </div>
+    <div class="center">
+        <img class="slogan" src="img/slogan.png" />
+        <!-- 清除同级节点浮动 -->
+        <div style="margin-top: 15px">
+            <img class="android" src="img/android.png" />
+            <img class="appstore" src="img/appstore.png" />
+        </div>
 
-
+    </div>
 </body>
 </html>
