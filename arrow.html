@@ -15,7 +15,6 @@
             border-bottom: 10px solid black;
             position: relative;/*本体作参照物*/
             animation: ly 2s linear infinite;
-
         }
 
         div:before{/*影子伪类*/
@@ -30,15 +29,12 @@
             content:"";/*影子定位必须要加的特殊属性*/
             transform: rotate(-45deg);
             /*box-shadow: 0 0 30px red;*/
-
         }
 
         @keyframes ly {
             from{transform: rotate(0deg)}
             to{transform: rotate(360deg)}
         }
-
-
     </style>
 </head>
 <body>

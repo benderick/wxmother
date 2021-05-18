@@ -172,6 +172,47 @@
         .you-anim   {animation: ityys 1s linear forwards; animation-delay: 3.5s;}
         .say-anim   {animation: ityys 1s linear forwards; animation-delay: 4.5s;}
 
+        /*您辛苦了*/
+        .page2 .youHard {
+            width: 30%;
+            left: 30%;
+            top: 45%;
+            transform: scale(0);
+        }
+
+        @keyframes youHard {
+            from {transform: scale(0);}
+            to {transform: scale(1);}
+        }
+
+        .youHard-anim{animation: youHard 1s linear forwards; animation-delay: 5s;}
+
+        .page2 .love {
+            width: 90%;
+            left:  -100%;
+            bottom: 10%;
+        }
+
+        @keyframes love {
+            from {left: -100%;}
+            to {left: 0;}
+        }
+
+        .love-anim {animation: love 2s linear forwards; animation-delay: 6s;}
+
+        .page2 .floret{
+            top: 0;
+            left: 0;
+            width: 70%;
+        }
+
+        .page2 .twoFlower{
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
     </style>
 
     <script>
@@ -192,7 +233,7 @@
             new Swiper('.swiper-container', {
                 direction: "vertical",
                 onSlideChangeStart: function (swiper) {
-                    // 第二页
+                    // page2
                     if (swiper.activeIndex === 1) {
                         $('.page2 .bg').addClass('bg-anim');
                         $('.page2 .line').addClass('line-anim');
@@ -202,6 +243,9 @@
                         $('.page2 .yes').addClass('yes-anim');
                         $('.page2 .you').addClass('you-anim');
                         $('.page2 .say').addClass('say-anim');
+                        $('.page2 .youHard').addClass('youHard-anim');
+                        $('.page2 .love').addClass('love-anim');
+
                     } else {
                         $('.page2 .bg').removeClass('bg-anim');
                         $('.page2 .line').removeClass('line-anim');
@@ -211,6 +255,9 @@
                         $('.page2 .yes').removeClass('yes-anim');
                         $('.page2 .you').removeClass('you-anim');
                         $('.page2 .say').removeClass('say-anim');
+                        $('.page2 .youHard').removeClass('youHard-anim');
+                        $('.page2 .love').removeClass('love-anim');
+
                     }
                 }
             });
@@ -253,11 +300,14 @@
                     <img class="yes" src="img/yes.png">
                     <img class="you" src="img/you.png">
                     <img class="say" src="img/say.png">
-
+                    <img class="youHard" src="img/youHard.png">
+                    <img class="love" src="img/motherLove.png">
+                    <img class="floret" src="img/floret.png">
+                    <img class="twoFlower" src="img/twoFlower.gif">
                 </div>
             </div>
 
-<!--            TODO: page3-->
+<!--TODO: page3-->
             <!--page3-->
             <div class="swiper-slide">
                 <div class="page3 wxpage"
