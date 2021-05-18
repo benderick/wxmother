@@ -213,6 +213,49 @@
             height: 100%;
         }
 
+/*以下为page3*/
+        .page3{
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .page3 .header {
+            position: absolute;
+            top: 0;
+            left: 35px;
+            width: 100%;
+            overflow: hidden; /*清除浮动、溢出裁切*/
+        }
+
+        .page3 .nav {
+            line-height: 80px; /* 字行高 */
+            padding: 0 10px;
+            color: white;
+            float: right;
+        }
+
+        .page3 .center{
+            position: absolute;
+            top: 40%;
+            right: 30px;
+        }
+
+        .slogan{
+            max-width: 300px;
+            width: 100%;
+        }
+
+        .android, .appstore{
+            max-width: 100px;
+            width: 100%;
+        }
     </style>
 
     <script>
@@ -257,11 +300,34 @@
                         $('.page2 .say').removeClass('say-anim');
                         $('.page2 .youHard').removeClass('youHard-anim');
                         $('.page2 .love').removeClass('love-anim');
+                    }
 
+                    if (swiper.activeIndex === 2) {
+                        $('video').get(0).muted = false; //抖音视频开音
+                        $('#playplay').attr('src', 'img/player.png');//抖音声音图标开启
+                        $('audio').get(0).pause(); //背景音乐停
+                        $('#music-btn').hide(); //音乐图标隐藏
+                        $('#music-btn').removeClass('music-btn-anim'); //音乐图标动画移除
+                    }
+                    else {
+                        $('#music-btn').show(); //音乐图标显示
+                        $('video').get(0).muted = true; //抖音视频静音
+                        $('#playplay').attr('src', 'img/player_close.png'); //抖音声音图标关闭
                     }
                 }
             });
         })
+
+        function player(_this) {
+            var $video = $('video');
+            if ($(_this).attr('src') === 'img/player_close.png') {
+                $video.get(0).muted = false;
+                $(_this).attr('src', 'img/player.png');
+            } else {
+                $video.get(0).muted = true;
+                $(_this).attr('src', 'img/player_close.png');
+            }
+        }
     </script>
 </head>
 <body>
@@ -308,11 +374,30 @@
             </div>
 
 <!--TODO: page3-->
-            <!--page3-->
+            <!--page3: 抖音页-->
             <div class="swiper-slide">
                 <div class="page3 wxpage"
                      style="background-color: white">
-                    <img class="bg" src="img/twoBg.png">
+                    <video loop autoplay muted src="mp4/video.mp4"></video>
+
+                    <div class="header">
+                        <!-- this对象为当前标签对象img -->
+                        <img id="playplay" class="nav" onclick="player(this)"
+                             style="margin: 28px 50px 0 0"
+                             src="img/player_close.png"/>
+                        <div class="nav" >企业认证</div>
+                        <div class="nav">机构认证</div>
+                        <div class="nav">抖音音乐人</div>
+                    </div>
+
+                    <div class="center">
+                        <img class="slogan" src="img/slogan.png" />
+                        <!-- 清除同级节点浮动 -->
+                        <div style="margin-top: 15px">
+                            <img class="android" src="img/android.png" />
+                            <img class="appstore" src="img/appstore.png" />
+                        </div>
+                    </div>
                 </div>
             </div>
     </div>
