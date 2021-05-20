@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="swiper/swiper-3.4.2.min.css"/>
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="swiper/swiper-3.4.2.min.js"></script>
+    <link rel="stylesheet" href="videojs/video-js.min.css">
+    <script src="videojs/video.min.js"></script>
 
     <style>
         *{margin:0; padding: 0;}
@@ -214,19 +216,102 @@
         }
 
 /*以下为page3*/
-        .page3{
+        .page3 p{
+            position: absolute;
+            font-size: 19px;
+            font-weight: 500;/* 微加粗，400=normal,700=bold */
+            color: rgb(228,100,59);
+            font-family: "楷体";
+        }
+        .page3 .text1{left:-100%;}
+        .page3 .p1   {top:  20%;}
+        .page3 .p2   {top:  25%;}
+        .page3 .p3   {top:  30%;}
+        .page3 .p4   {top:  35%;}
+        .page3 .p5   {top:  40%;}
+        .page3 .p6   {top:  45%;}
+        .page3 .text2{right:-100%;}
+        .page3 .p7   {top:  52%;}
+        .page3 .p8   {top:  57%;}
+        .page3 .p9   {top:  62%;}
+        .page3 .p10  {top:  67%;}
+        .page3 .p11  {top:  72%;}
+        .page3 .p12  {top:  77%;}
+        .page3-giving{
+            position: absolute;
+            width: 50%;
+            top:   7%;
+            left: -100%;
+        }
+        .page3-love{
+            position: absolute;
+            width: 80%;
+            left: -100%;
+            bottom: 0;
+        }
+        .page3-flower{
+            position: absolute;
+            width: 20%;
+            right:  0;
+            bottom: 2%;
+        }
+        .p1-a {animation: text1 1s linear forwards; animation-delay: 2s;}
+        .p2-a {animation: text1 1s linear forwards; animation-delay: 2.5s;}
+        .p3-a {animation: text1 1s linear forwards; animation-delay: 3s;}
+        .p4-a {animation: text1 1s linear forwards; animation-delay: 3.5s;}
+        .p5-a {animation: text1 1s linear forwards; animation-delay: 4s;}
+        .p6-a {animation: text1 1s linear forwards; animation-delay: 4.5s;}
+        .p7-a {animation: text2 1s linear forwards; animation-delay: 5s;}
+        .p8-a {animation: text2 1s linear forwards; animation-delay: 5.5s;}
+        .p9-a {animation: text2 1s linear forwards; animation-delay: 6s;}
+        .p10-a{animation: text2 1s linear forwards; animation-delay: 6.5s;}
+        .p11-a{animation: text2 1s linear forwards; animation-delay: 7s;}
+        .p12-a{animation: text2 1s linear forwards; animation-delay: 7.5s;}
+        .page3-love-a  {animation: love3 2s linear forwards;
+            animation-delay: 3s;}
+        .page3-giving-a{animation: giving 2s linear forwards;
+            animation-delay: 1s;}
+
+        @keyframes text1 {from{left: -50%;} to{left: 5%;} }
+        @keyframes text2 {from{right:-50%;} to{right:12%;}}
+        @keyframes love3 {from{left: -100%;}to{left:-30%;}}
+        @keyframes giving{from{left: -100%;}to{left: 20%;}}
+
+        .page3-mother{
+            position: absolute;
+            width: 40%;
+            top:   20%;
+            right: 10%;
+            border:1px solid orange;
+            transform: rotateX(-90deg);
+        }
+
+        @keyframes mm{
+            0%  {opacity: 0;}
+            25% {transform: rotateX(60deg);}
+            50% {transform: rotateX(-60deg); opacity: 1;}
+            75% {transform: rotateX(30deg);}
+            100%{transform: rotateX(0deg);}
+        }
+
+        /*CSS3动画*/
+        .page3-mother-a{animation: mm 2s forwards; animation-delay: 3s;}
+
+/*以下为page4*/
+        .page4 {
             width: 100%;
             height: 100%;
             position: relative;
+            overflow: hidden;
         }
 
-        video {
+        .page4 .wxvideo {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .page3 .header {
+        .page4 .header {
             position: absolute;
             top: 0;
             left: 35px;
@@ -234,27 +319,67 @@
             overflow: hidden; /*清除浮动、溢出裁切*/
         }
 
-        .page3 .nav {
+        .page4 .header .nav {
             line-height: 80px; /* 字行高 */
             padding: 0 10px;
             color: white;
             float: right;
         }
 
-        .page3 .center{
+        .page4 .center {
             position: absolute;
             top: 40%;
             right: 30px;
         }
 
-        .slogan{
+        .page4 .center .slogan {
             max-width: 300px;
             width: 100%;
         }
 
-        .android, .appstore{
+        .page4 .center .download{
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        .page4 .android, .page4 .appstore{
             max-width: 100px;
             width: 100%;
+        }
+
+        .page4 .qrgroup{ position: relative; display: inline-block;}/*行块式，兼具行和块的特点*/
+
+        .page4 .qrcode{
+            height: 35px;
+        }
+
+        .page4 .qrbig{
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            opacity: 0;
+        }
+
+/*以下为page5*/
+        .mv-container {
+            background-color: #262626;
+            position: relative;
+
+        }
+        .mv-wrapper {
+            padding: 0;
+
+        }
+        .mv-player{
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            top: 50%;
+            left: 50%;
+            margin-top: -25px;
+            margin-left: -25px;
         }
     </style>
 
@@ -289,7 +414,8 @@
                         $('.page2 .youHard').addClass('youHard-anim');
                         $('.page2 .love').addClass('love-anim');
 
-                    } else {
+                    }
+                    else {
                         $('.page2 .bg').removeClass('bg-anim');
                         $('.page2 .line').removeClass('line-anim');
                         $('.page2 .bird').removeClass('bird-anim');
@@ -302,24 +428,131 @@
                         $('.page2 .love').removeClass('love-anim');
                     }
 
+                    // page3
                     if (swiper.activeIndex === 2) {
-                        $('video').get(0).muted = false; //抖音视频开音
-                        $('#playplay').attr('src', 'img/player.png');//抖音声音图标开启
+                        $(".page3 .bg").addClass("bg-anim");
+                        $(".page3 .line").addClass("line-anim");
+                        $(".page3 .bird").addClass("bird-anim");
+                        $(".page3 .page3-giving").addClass("page3-giving-a");
+                        $(".page3 .page3-mother").addClass("page3-mother-a");
+                        $(".page3 .p1").addClass("p1-a");
+                        $(".page3 .p2").addClass("p2-a");
+                        $(".page3 .p3").addClass("p3-a");
+                        $(".page3 .p4").addClass("p4-a");
+                        $(".page3 .p5").addClass("p5-a");
+                        $(".page3 .p6").addClass("p6-a");
+                        $(".page3 .p7").addClass("p7-a");
+                        $(".page3 .p8").addClass("p8-a");
+                        $(".page3 .p9").addClass("p9-a");
+                        $(".page3 .p10").addClass("p10-a");
+                        $(".page3 .p11").addClass("p11-a");
+                        $(".page3 .p12").addClass("p12-a");
+                        $(".page3 .page3-love").addClass("page3-love-a");
+                    }
+                    else {
+                        $(".page3 .bg").removeClass("bg-anim");
+                        $(".page3 .line").removeClass("line-anim");
+                        $(".page3 .bird").removeClass("bird-anim");
+                        $(".page3 .page3-giving").removeClass("page3-giving-a");
+                        $(".page3 .page3-mother").removeClass("page3-mother-a");
+                        $(".page3 .p1").removeClass("p1-a");
+                        $(".page3 .p2").removeClass("p2-a");
+                        $(".page3 .p3").removeClass("p3-a");
+                        $(".page3 .p4").removeClass("p4-a");
+                        $(".page3 .p5").removeClass("p5-a");
+                        $(".page3 .p6").removeClass("p6-a");
+                        $(".page3 .p7").removeClass("p7-a");
+                        $(".page3 .p8").removeClass("p8-a");
+                        $(".page3 .p9").removeClass("p9-a");
+                        $(".page3 .p10").removeClass("p10-a");
+                        $(".page3 .p11").removeClass("p11-a");
+                        $(".page3 .p12").removeClass("p12-a");
+                        $(".page3 .page3-love").removeClass("page3-love-a");
+                    }
+
+                    if (swiper.activeIndex === 3 || swiper.activeIndex === 4) {
                         $('audio').get(0).pause(); //背景音乐停
-                        $('#music-btn').hide(); //音乐图标隐藏
+                        $('#music-btn').css('display', 'none');
+                        // $('#music-btn').hide(); //音乐图标隐藏
                         $('#music-btn').removeClass('music-btn-anim'); //音乐图标动画移除
                     }
                     else {
                         $('#music-btn').show(); //音乐图标显示
-                        $('video').get(0).muted = true; //抖音视频静音
+                    }
+
+                    // page4
+                    if (swiper.activeIndex === 3) {
+                        $('.wxvideo').get(0).muted = false; //抖音视频开音
+                        $('#playplay').attr('src', 'img/player.png');//抖音声音图标开启
+                    }
+                    else {
+                        $('.wxvideo').get(0).muted = true; //抖音视频静音
                         $('#playplay').attr('src', 'img/player_close.png'); //抖音声音图标关闭
+                    }
+
+                    // page5
+                    if (swiper.activeIndex === 4) {
+                        var mvplayer = videojs('mv-video');
+                        mvplayer.ready(function () {
+
+                            this.on('play', function () {
+                                $('.mv-player').css('display', 'none');
+                            });
+
+                            this.on('pause', function () {
+                                $('.mv-player').css('display', 'inline-block');
+
+                            });
+
+                            this.play();
+                            // 设置视频宽高
+                            var $video = $('#mv-video');
+                            var whr = $video.width() / $video.height(); //宽高比
+                            $video.css('width', '100%');
+                            $video.css('height', $video.width()/whr);
+                            // 存参数，自定义属性
+                            $video.attr('whr', whr);
+                        });
+
+                        $('.mv-player').click(function () {
+                            mvplayer.play();
+                            $(this).css('display', 'none');
+                        });
+
+                        // 浏览器尺寸发生变化时执行
+                        $(window).resize(function (){
+                            var $video = $('#mv-video');
+                            var whr = $video.attr('whr');
+                            $video.css('height', $video.width()/whr);
+                        });
+
+                    }
+                    else {
+                        var mvplayer = videojs('mv-video');
+                        mvplayer.pause();
                     }
                 }
             });
+
+            // QR码、Jquery动画
+            // hover悬停事件、click点击事件
+            $('.qrcode').hover(function (){
+                $('.qrbig').animate({'width': '200px',  'height': '200px',  'opacity': 1}, 1000);
+            }, function () {
+                $('.app').animate({'opacity': 0}, 1000);
+            });
+
+            $('.qrbig').hover(function (){
+                }, function () {
+                $('.qrbig').animate({'width': '0', 'height': '0', 'opacity': 0}, 1000);
+                $('.app').animate({'opacity': 1}, 1000);
+            });
+
         })
 
+        // 抖音页音频
         function player(_this) {
-            var $video = $('video');
+            var $video = $('.wxvideo');
             if ($(_this).attr('src') === 'img/player_close.png') {
                 $video.get(0).muted = false;
                 $(_this).attr('src', 'img/player.png');
@@ -373,12 +606,38 @@
                 </div>
             </div>
 
-<!--TODO: page3-->
-            <!--page3: 抖音页-->
+            <!--page3-->
             <div class="swiper-slide">
-                <div class="page3 wxpage"
+                <div class="page3 wxpage">
+                    <img class="bg"     src="img/twoBg.png" />
+                    <img class="line"   src="img/thickLine.png" />
+                    <img class="bird"   src="img/bird.png" />
+                    <img class="floret" src="img/floret.png" />
+                    <img class="page3-giving" src="img/thanksGiving.png" />
+                    <img class="page3-mother" src="img/myMother.jpg" />
+                    <p class="text1  p1">世上只有妈妈好</p>
+                    <p class="text1  p2">有妈的孩子像块宝</p>
+                    <p class="text1  p3">是您给了我生命</p>
+                    <p class="text1  p4">谢谢您带给我一切</p>
+                    <p class="text1  p5">您的爱</p>
+                    <p class="text1  p6">我永远报答不完</p>
+                    <p class="text2  p7">从未给您写过什么</p>
+                    <p class="text2  p8">也没经常对您说过爱您的话语</p>
+                    <p class="text2  p9">但您对我的关怀和爱意</p>
+                    <p class="text2 p10">点点滴滴都在我心头</p>
+                    <p class="text2 p11">我爱您</p>
+                    <p class="text2 p12">妈妈</p>
+                    <img src="img/love.png" class="page3-love" />
+                    <img src="img/threeFlower.png" class="page3-flower" />
+                    <img src="img/twoFlower.gif" class="twoFlower" />
+                </div>
+            </div>
+
+            <!--page4: 抖音页-->
+            <div class="swiper-slide">
+                <div class="page4 wxpage"
                      style="background-color: white">
-                    <video loop autoplay muted src="mp4/video.mp4"></video>
+                    <video class="wxvideo" loop autoplay muted src="mp4/video.mp4"></video>
 
                     <div class="header">
                         <!-- this对象为当前标签对象img -->
@@ -392,15 +651,33 @@
 
                     <div class="center">
                         <img class="slogan" src="img/slogan.png" />
-                        <!-- 清除同级节点浮动 -->
-                        <div style="margin-top: 15px">
-                            <img class="android" src="img/android.png" />
-                            <img class="appstore" src="img/appstore.png" />
+                        <div class="download">
+                            <img class="android app" src="img/android.png" />
+                            <img class="appstore app" src="img/appstore.png" />
+                            <div class="qrgroup">
+                                <img class="qrcode app" src="img/qrcode.png">
+                                <img class="qrbig" src="img/qrcode_big.png">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-    </div>
+
+            <!--page5-->
+            <div class="swiper-slide">
+                <div class="mv-container">
+                    <div class="mv-wrapper">
+                        <video id="mv-video" class="video-js" controls>
+                            <source src="mp4/ouruola.mp4">
+                        </video>
+                    </div>
+
+                    <img class="mv-player" src="img/mvplayer.png">
+                </div>
+            </div>
+
+
+        </div>
     </div>
 
 </body>
